@@ -406,7 +406,7 @@ class VentyWatchdogService : Service() {
         return NotificationCompat.Builder(this, VentyApp.CHANNEL_ID)
             .setContentTitle("Venty Keep Alive")
             .setContentText(text)
-            .setSmallIcon(android.R.drawable.stat_notify_sync)
+            .setSmallIcon(R.mipmap.ic_launcher)
             .setContentIntent(pendingIntent)
             .addAction(android.R.drawable.ic_menu_close_clear_cancel, "Stop", stopPendingIntent)
             .setOngoing(true)
