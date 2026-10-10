@@ -83,6 +83,17 @@ Output APK: `app/build/outputs/apk/debug/app-debug.apk`
 
 ---
 
+## Disclaimer & Warranty Warning
+
+> **WARNING: USE AT YOUR OWN RISK**
+
+- This software is a third-party modification and is not endorsed, affiliated with, or supported by Storz & Bickel GmbH.
+- Operating the heating element continuously by suppressing the built-in auto-shutoff mechanism may cause additional thermal stress on battery cells and electronics.
+- Using third-party software to bypass manufacturer safety or convenience timers may void your device warranty.
+- The author and contributors assume no responsibility for damaged vaporizers, bricked units, shortened component lifespans, or unexpected side effects.
+
+---
+
 ## Credits & Acknowledgments
 
 Special credit goes to the [reactive-volcano-app](https://github.com/imtbl/reactive-volcano-app) project.

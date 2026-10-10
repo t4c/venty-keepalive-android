@@ -218,6 +218,12 @@ fun VentyDashboard(
                         color = Color.LightGray
                     )
 
+                    Text(
+                        text = "Disclaimer: Third-party utility not affiliated with Storz & Bickel. Use at your own risk.",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = Color.Gray
+                    )
+
                     HorizontalDivider(color = Color(0xFF333333))
 
                     Column(

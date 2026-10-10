@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.9] - 2026-10-10
+
+- Added official Disclaimer & Warranty Warning to README and About dialog.
+- Version bump to 1.0.9 (versionCode 11).
+
 ## [1.0.8] - 2026-10-10
 
 ### Highlights & Improvements
