@@ -220,7 +220,11 @@ fun VentyDashboard(
 
                     HorizontalDivider(color = Color(0xFF333333))
 
-                    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.Start,
+                        verticalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
                         TextButton(
                             onClick = { uriHandler.openUri("https://www.ghcif.de") },
                             contentPadding = PaddingValues(0.dp)
