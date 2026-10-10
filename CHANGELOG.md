@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [1.0.8] - 2026-10-10
 
 - Official signed release build with production Keystore (`release.jks`).
+- Obtainium support for automated release tracking and seamless sideload updates.
 - Adaptive icon with 60% safe zone tuning for Android app drawers and launchers.
 - Version code bumped to 10.
 

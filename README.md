@@ -23,7 +23,23 @@ Prevents the automatic 120-second auto-shutoff timeout during vaping sessions by
 
 ---
 
-## Installation & Sideloading Guide
+## Installation & Updates
+
+### Option 1: Obtainium (Recommended)
+
+Get automatic background updates directly from GitHub releases via [Obtainium](https://github.com/ImranR98/Obtainium):
+
+1. Install **Obtainium** on your Android device.
+2. Tap **Add App** (+).
+3. Paste the repository URL:
+   ```text
+   https://github.com/t4c/venty-keepalive-android
+   ```
+4. Tap **Add** / **Install**. Obtainium tracks new releases and notifies you whenever an update drops.
+
+---
+
+### Option 2: Direct APK Download (Sideload)
 
 Because this app is open source and not distributed through the Google Play Store, it must be installed manually (sideloaded).
 
