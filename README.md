@@ -83,6 +83,14 @@ Output APK: `app/build/outputs/apk/debug/app-debug.apk`
 
 ---
 
+## Credits & Acknowledgments
+
+Special credit goes to the [reactive-volcano-app](https://github.com/imtbl/reactive-volcano-app) project.
+
+Their reverse-engineered BLE packet structures, opcode definitions (`protocol.ts`), and command mask mappings (`StatusWriteMask`, `HeaterMode`) were essential in understanding the Venty communication protocol and building this stand-alone Android implementation.
+
+---
+
 ## Author
 
 **t4c**  
