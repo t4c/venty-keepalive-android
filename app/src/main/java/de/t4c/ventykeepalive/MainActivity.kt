@@ -220,14 +220,18 @@ fun VentyDashboard(
 
                     HorizontalDivider(color = Color(0xFF333333))
 
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text("GitHub:", style = MaterialTheme.typography.bodySmall, color = Color.Gray)
-                        TextButton(onClick = { uriHandler.openUri("https://github.com/t4c/venty-keepalive-android") }) {
-                            Text("github.com/t4c/venty-keepalive-android", color = MaterialTheme.colorScheme.primary)
+                    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                        TextButton(
+                            onClick = { uriHandler.openUri("https://www.ghcif.de") },
+                            contentPadding = PaddingValues(0.dp)
+                        ) {
+                            Text("https://www.ghcif.de", color = MaterialTheme.colorScheme.primary)
+                        }
+                        TextButton(
+                            onClick = { uriHandler.openUri("https://github.com/t4c/venty-keepalive-android") },
+                            contentPadding = PaddingValues(0.dp)
+                        ) {
+                            Text("https://github.com/t4c/venty-keepalive-android", color = MaterialTheme.colorScheme.primary)
                         }
                     }
                 }
