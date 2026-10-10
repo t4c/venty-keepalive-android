@@ -208,7 +208,7 @@ fun VentyDashboard(
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     Text(
-                        text = "written by Milan 't4c' Berger",
+                        text = "written by t4c",
                         fontWeight = FontWeight.SemiBold,
                         style = MaterialTheme.typography.bodyLarge
                     )
@@ -225,31 +225,9 @@ fun VentyDashboard(
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text("Web:", style = MaterialTheme.typography.bodySmall, color = Color.Gray)
-                        TextButton(onClick = { uriHandler.openUri("https://www.ghcif.de") }) {
-                            Text("https://www.ghcif.de", color = MaterialTheme.colorScheme.primary)
-                        }
-                    }
-
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
                         Text("GitHub:", style = MaterialTheme.typography.bodySmall, color = Color.Gray)
                         TextButton(onClick = { uriHandler.openUri("https://github.com/t4c/venty-keepalive-android") }) {
                             Text("github.com/t4c/venty-keepalive-android", color = MaterialTheme.colorScheme.primary)
-                        }
-                    }
-
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text("Email:", style = MaterialTheme.typography.bodySmall, color = Color.Gray)
-                        TextButton(onClick = { uriHandler.openUri("mailto:t4c@ghcif.de") }) {
-                            Text("t4c@ghcif.de", color = MaterialTheme.colorScheme.primary)
                         }
                     }
                 }

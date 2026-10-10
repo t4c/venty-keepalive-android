@@ -67,9 +67,7 @@ Output APK: `app/build/outputs/apk/debug/app-debug.apk`
 
 ---
 
-## Author & Contact
+## Author
 
-**Milan 't4c' Berger**  
-Website: [https://www.ghcif.de](https://www.ghcif.de)  
-GitHub: [https://github.com/t4c](https://github.com/t4c)  
-Email: [t4c@ghcif.de](mailto:t4c@ghcif.de)
+**t4c**  
+GitHub: [https://github.com/t4c](https://github.com/t4c)
