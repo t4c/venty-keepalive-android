@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.1] - 2026-10-10
+
+- Clean vertical link layout in About dialog without prefixes.
+- Updated version code & name.
+
 ## [1.0.0] - 2026-10-10
 
 ### Initial Release
