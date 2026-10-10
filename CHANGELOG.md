@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.10] - 2026-10-10
+
+- Prominently display third-party notice directly on dashboard footer.
+- Version bump to 1.0.10 (versionCode 12).
+
 ## [1.0.9] - 2026-10-10
 
 - Added official Disclaimer & Warranty Warning to README and About dialog.

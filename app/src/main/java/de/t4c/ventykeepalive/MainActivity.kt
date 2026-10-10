@@ -452,9 +452,7 @@ fun VentyDashboard(
 
         // About Button (unten rechts)
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 16.dp),
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.End
         ) {
             TextButton(
@@ -470,5 +468,16 @@ fun VentyDashboard(
                 Text("About", style = MaterialTheme.typography.bodySmall)
             }
         }
+
+        // Disclaimer Note
+        Text(
+            text = "Notice: Third-party utility not affiliated with Storz & Bickel. Use at your own risk.",
+            style = MaterialTheme.typography.labelSmall,
+            color = Color(0xFF666666),
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 24.dp)
+        )
     }
 }
