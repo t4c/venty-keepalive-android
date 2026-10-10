@@ -44,7 +44,7 @@ Get automatic background updates directly from GitHub releases via [Obtainium](h
 Because this app is open source and not distributed through the Google Play Store, it must be installed manually (sideloaded).
 
 ### 1. Download
-Download `VentyKeepAlive-v1.0.0.apk` from the official [GitHub Releases](https://github.com/t4c/venty-keepalive-android/releases).
+Download `VentyKeepAlive-v1.0.10.apk` from the official [GitHub Releases](https://github.com/t4c/venty-keepalive-android/releases).
 
 ### 2. Enable Unknown Sources
 1. Open the downloaded `.apk` file (from browser downloads or file manager).
