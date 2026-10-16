@@ -4,10 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [1.1.0] - 2026-10-16
 
-- **Live Haptic Vibration Control:** Umlegen des Schalters in der App sendet das BLE-Kommando (`0x06`) jetzt sofort an den Venty, sodass Vibrationen live deaktiviert und wieder reaktiviert werden können.
-- **Max Wakeups Guard:** Einstellbares Limit für Keep-Alive-Resets (Default: 0 / unendlich; 1 bis 10 Resets). Verhindert endloses Durchglühen des Venty in der Hosentasche, falls das Ausschalten vergessen wurde.
-- **GitHub Security Policy:** Offizielle `.github/SECURITY.md` für koordinierte Vulnerability Reports und Responsible Disclosure.
-- Version bump auf 1.1.0 (versionCode 13).
+- **Live Haptic Vibration Control:** Toggling the vibration switch in the app now immediately dispatches the BLE command (`0x06`) to the Venty, allowing haptic vibration to be enabled or disabled on the fly without remaining off.
+- **Max Wakeups Guard:** Configurable safety limit for consecutive keep-alive resets (default: 0 / unlimited; 1 to 10 resets). Prevents continuous heating in pockets if the device was forgotten.
+- **GitHub Security Policy:** Added official `.github/SECURITY.md` for coordinated vulnerability reporting and responsible disclosure.
+- Bumped version to 1.1.0 (versionCode 13).
 
 ## [1.0.10] - 2026-10-10
 
