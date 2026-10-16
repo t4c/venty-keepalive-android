@@ -12,7 +12,8 @@ Prevents the automatic 120-second auto-shutoff timeout during vaping sessions by
 - **Adaptive Keep-Alive Bounce:**
   - Detects active heating modes (`Heating`, `Boost`, `Superboost`).
   - Transparently executes state bounce without dropping your set target temperature or active boost mode.
-- **Auto Haptic Mute:** Automatically disables haptic vibration on connect so your Venty won't buzz in your hand or pocket when executing keep-alive resets.
+- **Auto Haptic Mute & Live Control:** Disables haptic feedback on connect or toggles it live on the Venty at any time to suppress bounce buzzes.
+- **Max Wakeups Guard:** Configurable safety limit (default: unlimited) for consecutive keep-alive bounces to prevent overheating in pockets if forgotten.
 - **Live Telemetry (Jetpack Compose Dark UI):**
   - Target temperature setpoint
   - Battery level percentage (%)
@@ -44,7 +45,7 @@ Get automatic background updates directly from GitHub releases via [Obtainium](h
 Because this app is open source and not distributed through the Google Play Store, it must be installed manually (sideloaded).
 
 ### 1. Download
-Download `VentyKeepAlive-v1.0.10.apk` from the official [GitHub Releases](https://github.com/t4c/venty-keepalive-android/releases).
+Download `VentyKeepAlive-v1.1.0.apk` from the official [GitHub Releases](https://github.com/t4c/venty-keepalive-android/releases).
 
 ### 2. Enable Unknown Sources
 1. Open the downloaded `.apk` file (from browser downloads or file manager).

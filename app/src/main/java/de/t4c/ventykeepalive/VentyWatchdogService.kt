@@ -53,6 +53,19 @@ class VentyWatchdogService : Service() {
     // Config settings
     var thresholdSeconds: Int = 30
     var autoDisableVibration: Boolean = true
+        set(value) {
+            val changed = field != value
+            field = value
+            _state.value = _state.value.copy(autoDisableVibration = value)
+            if (changed && _state.value.connected) {
+                applyVibrationSetting(value)
+            }
+        }
+    var maxWakeups: Int = 0 // 0 = unlimited
+        set(value) {
+            field = value
+            _state.value = _state.value.copy(maxWakeups = value)
+        }
 
     private var isScanning = false
     private var isSequenceInProgress = false
@@ -246,7 +259,16 @@ class VentyWatchdogService : Service() {
                         if (autoDisableVibration) {
                             serviceScope.launch {
                                 delay(300)
-                                writeCharacteristic(VentyConstants.createDisableVibrationFrame())
+                                if (!isSequenceInProgress) {
+                                    writeCharacteristic(VentyConstants.createVibrationFrame(false))
+                                }
+                            }
+                        } else {
+                            serviceScope.launch {
+                                delay(300)
+                                if (!isSequenceInProgress) {
+                                    writeCharacteristic(VentyConstants.createVibrationFrame(true))
+                                }
                             }
                         }
                         return
@@ -271,6 +293,21 @@ class VentyWatchdogService : Service() {
             value: ByteArray
         ) {
             parsePayload(value)
+        }
+    }
+
+    fun applyVibrationSetting(mute: Boolean) {
+        serviceScope.launch {
+            // Wait briefly if a bounce sequence is active to prevent collision
+            var retryCount = 0
+            while (isSequenceInProgress && retryCount < 10) {
+                delay(100)
+                retryCount++
+            }
+            // mute = true means disable vibration on Venty (write 0)
+            // mute = false means enable vibration on Venty (write 1)
+            writeCharacteristic(VentyConstants.createVibrationFrame(!mute))
+            Log.i(TAG, "Applied vibration setting to Venty: enabled=${!mute}")
         }
     }
 
@@ -316,17 +353,36 @@ class VentyWatchdogService : Service() {
             val timer = (data[9].toInt() and 0xFF) + (data[10].toInt() and 0xFF)
             val modeCode = data[11].toInt() and 0xFF
             val heaterMode = HeaterMode.fromCode(modeCode)
+            val prevHeaterMode = _state.value.heaterMode
+
+            // Reset session resetCount if device transitioned back to STANDBY
+            val newResetCount = if (heaterMode == HeaterMode.STANDBY && prevHeaterMode != HeaterMode.STANDBY) {
+                0
+            } else {
+                _state.value.resetCount
+            }
 
             _state.value = _state.value.copy(
                 actualTemp = curTemp,
                 targetTemp = tgtTemp,
                 battery = batt,
                 timerSeconds = timer,
-                heaterMode = heaterMode
+                heaterMode = heaterMode,
+                resetCount = newResetCount
             )
             updateNotification()
 
             if (timer <= thresholdSeconds && heaterMode != HeaterMode.STANDBY && !isSequenceInProgress) {
+                // If maxWakeups > 0 and we reached the limit, do not reset anymore -> let it shut down safely
+                if (maxWakeups > 0 && _state.value.resetCount >= maxWakeups) {
+                    if (_state.value.statusMessage != "Max wakeups reached ($maxWakeups)") {
+                        Log.i(TAG, "Max wakeups reached ($maxWakeups). Allowing auto-shutoff.")
+                        _state.value = _state.value.copy(statusMessage = "Max wakeups reached ($maxWakeups)")
+                        updateNotification()
+                    }
+                    return
+                }
+
                 val now = System.currentTimeMillis()
                 if (now - lastKeepAliveTime > 15000L) {
                     lastKeepAliveTime = now

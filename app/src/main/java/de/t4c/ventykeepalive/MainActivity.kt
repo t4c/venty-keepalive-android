@@ -44,6 +44,7 @@ class MainActivity : ComponentActivity() {
     private val serviceState = mutableStateOf(VentyState())
     private val thresholdState = mutableFloatStateOf(30f)
     private val vibrationState = mutableStateOf(true)
+    private val maxWakeupsState = mutableFloatStateOf(0f)
 
     private val connection = object : ServiceConnection {
         override fun onServiceConnected(className: ComponentName, service: IBinder) {
@@ -55,11 +56,15 @@ class MainActivity : ComponentActivity() {
             // Sync initial state
             thresholdState.floatValue = s.thresholdSeconds.toFloat()
             vibrationState.value = s.autoDisableVibration
+            maxWakeupsState.floatValue = s.maxWakeups.toFloat()
 
             lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
                     s.state.collect { newState ->
                         serviceState.value = newState
+                        // Keep local UI states synchronized if stateflow emits
+                        vibrationState.value = newState.autoDisableVibration
+                        maxWakeupsState.floatValue = newState.maxWakeups.toFloat()
                     }
                 }
             }
@@ -112,6 +117,7 @@ class MainActivity : ComponentActivity() {
                             state = serviceState.value,
                             threshold = thresholdState.floatValue,
                             autoVibrate = vibrationState.value,
+                            maxWakeups = maxWakeupsState.floatValue,
                             onThresholdChange = { newVal ->
                                 thresholdState.floatValue = newVal
                                 watchdogService?.thresholdSeconds = newVal.toInt()
@@ -119,6 +125,10 @@ class MainActivity : ComponentActivity() {
                             onVibrateToggle = { newVal ->
                                 vibrationState.value = newVal
                                 watchdogService?.autoDisableVibration = newVal
+                            },
+                            onMaxWakeupsChange = { newVal ->
+                                maxWakeupsState.floatValue = newVal
+                                watchdogService?.maxWakeups = newVal.toInt()
                             },
                             onStartClick = { checkAndStart() },
                             onStopClick = { stopWatchdogService() }
@@ -186,8 +196,10 @@ fun VentyDashboard(
     state: VentyState,
     threshold: Float,
     autoVibrate: Boolean,
+    maxWakeups: Float,
     onThresholdChange: (Float) -> Unit,
     onVibrateToggle: (Boolean) -> Unit,
+    onMaxWakeupsChange: (Float) -> Unit,
     onStartClick: () -> Unit,
     onStopClick: () -> Unit
 ) {
@@ -406,6 +418,27 @@ fun VentyDashboard(
                     valueRange = 10f..60f,
                     steps = 9
                 )
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column {
+                        val wakeupsText = if (maxWakeups.toInt() == 0) "Unlimited (∞)" else "${maxWakeups.toInt()} Resets"
+                        Text("Max Wakeups: $wakeupsText", style = MaterialTheme.typography.bodyMedium)
+                        Text("Stops keep-alive to prevent endless heating in pocket", style = MaterialTheme.typography.bodySmall, color = Color.Gray)
+                    }
+                }
+
+                Slider(
+                    value = maxWakeups,
+                    onValueChange = onMaxWakeupsChange,
+                    valueRange = 0f..10f,
+                    steps = 9
+                )
+
+                HorizontalDivider(color = Color(0xFF2C2C2C))
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),

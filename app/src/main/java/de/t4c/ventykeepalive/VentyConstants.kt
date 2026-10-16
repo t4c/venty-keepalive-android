@@ -24,13 +24,15 @@ object VentyConstants {
         return frame
     }
 
-    fun createDisableVibrationFrame(): ByteArray {
+    fun createVibrationFrame(enabled: Boolean): ByteArray {
         val frame = ByteArray(7)
-        frame[0] = 0x06.toByte() // Command.BRIGHTNESS_VIBRATION
+        frame[0] = 0x06.toByte() // Command.BRIGHTNESS_VIBRATION / SETTINGS
         frame[1] = 0x08.toByte() // BrightnessVibrationWriteMask.VIBRATION (1 << 3)
-        frame[5] = 0x00.toByte() // 0 = disabled
+        frame[5] = if (enabled) 0x01.toByte() else 0x00.toByte()
         return frame
     }
+
+    fun createDisableVibrationFrame(): ByteArray = createVibrationFrame(false)
 }
 
 enum class HeaterMode(val code: Int, val label: String) {
@@ -55,5 +57,7 @@ data class VentyState(
     val heaterMode: HeaterMode = HeaterMode.STANDBY,
     val lastResetTimeMillis: Long = 0,
     val resetCount: Int = 0,
+    val maxWakeups: Int = 0, // 0 = unendlich / unlimited
+    val autoDisableVibration: Boolean = true,
     val statusMessage: String = "Idle"
 )
