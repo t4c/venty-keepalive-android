@@ -107,3 +107,11 @@ Their reverse-engineered BLE packet structures, opcode definitions (`protocol.ts
 
 **t4c**  
 GitHub: [https://github.com/t4c](https://github.com/t4c)
+
+---
+
+## Support
+
+If you find this project useful, you can buy me a coffee:
+
+[![Buy Me A Coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=☕&slug=t4c2&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff)](https://buymeacoffee.com/t4c2)
