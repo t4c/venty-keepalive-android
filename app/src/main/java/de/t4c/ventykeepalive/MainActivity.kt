@@ -261,7 +261,7 @@ fun VentyDashboard(
                             onClick = { uriHandler.openUri("https://buymeacoffee.com/t4c2") },
                             contentPadding = PaddingValues(horizontal = 4.dp, vertical = 2.dp)
                         ) {
-                            Text(" buymeacoffee.com/t4c2 ☕", color = MaterialTheme.colorScheme.primary)
+                            Text(" ☕ Buy me a coffee (buymeacoffee.com/t4c2)", color = MaterialTheme.colorScheme.primary)
                         }
                     }
                 }
@@ -489,20 +489,13 @@ fun VentyDashboard(
             }
         }
 
-        // About & Support Buttons (unten)
+        // About Button (unten rechts)
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 16.dp),
+            horizontalArrangement = Arrangement.End
         ) {
-            val uriHandler = LocalUriHandler.current
-            TextButton(
-                onClick = { uriHandler.openUri("https://buymeacoffee.com/t4c2") },
-                colors = ButtonDefaults.textButtonColors(contentColor = MaterialTheme.colorScheme.primary)
-            ) {
-                Text("☕ Buy me a coffee", style = MaterialTheme.typography.bodySmall)
-            }
-
             TextButton(
                 onClick = { showAboutDialog = true },
                 colors = ButtonDefaults.textButtonColors(contentColor = Color.Gray)
@@ -516,16 +509,5 @@ fun VentyDashboard(
                 Text("About", style = MaterialTheme.typography.bodySmall)
             }
         }
-
-        // Disclaimer Note
-        Text(
-            text = "Notice: Third-party utility not affiliated with Storz & Bickel. Use at your own risk.",
-            style = MaterialTheme.typography.labelSmall,
-            color = Color(0xFF666666),
-            textAlign = androidx.compose.ui.text.style.TextAlign.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 24.dp)
-        )
     }
 }
