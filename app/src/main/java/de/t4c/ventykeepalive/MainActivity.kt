@@ -257,6 +257,12 @@ fun VentyDashboard(
                         ) {
                             Text(" github.com/t4c/venty-keepalive-android", color = MaterialTheme.colorScheme.primary)
                         }
+                        TextButton(
+                            onClick = { uriHandler.openUri("https://buymeacoffee.com/t4c2") },
+                            contentPadding = PaddingValues(horizontal = 4.dp, vertical = 2.dp)
+                        ) {
+                            Text(" buymeacoffee.com/t4c2 ☕", color = MaterialTheme.colorScheme.primary)
+                        }
                     }
                 }
             },
@@ -483,11 +489,20 @@ fun VentyDashboard(
             }
         }
 
-        // About Button (unten rechts)
+        // About & Support Buttons (unten)
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.End
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
+            val uriHandler = LocalUriHandler.current
+            TextButton(
+                onClick = { uriHandler.openUri("https://buymeacoffee.com/t4c2") },
+                colors = ButtonDefaults.textButtonColors(contentColor = MaterialTheme.colorScheme.primary)
+            ) {
+                Text("☕ Buy me a coffee", style = MaterialTheme.typography.bodySmall)
+            }
+
             TextButton(
                 onClick = { showAboutDialog = true },
                 colors = ButtonDefaults.textButtonColors(contentColor = Color.Gray)
